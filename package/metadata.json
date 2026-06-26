@@ -1,0 +1,18 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "ifny75"
+            }
+        ],
+        "Category": "Date and Time",
+        "Description": "Dynamic-island style capsule for the Plasma panel: clock, media, notifications, keyboard layout, downloads, screen sharing, IDE builds and CPU/RAM — fully customizable.",
+        "Icon": "notifications",
+        "Id": "com.ifny75.dynamicisland",
+        "License": "MIT",
+        "Name": "Dynamic Island",
+        "Version": "1.1.0"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
