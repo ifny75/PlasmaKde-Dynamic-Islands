@@ -1,44 +1,45 @@
 import QtQuick
 import org.kde.plasma.configuration
+import "../ui/Translator.js" as Tr
 
 ConfigModel {
     ConfigCategory {
-        name: i18n("Size & Shape")
+        name: Tr.t("Size & Shape")
         icon: "transform-scale"
         source: "configSize.qml"
     }
     ConfigCategory {
-        name: i18n("Layout")
+        name: Tr.t("Layout")
         icon: "view-split-left-right"
         source: "configLayout.qml"
     }
     ConfigCategory {
-        name: i18n("Appearance")
+        name: Tr.t("Appearance")
         icon: "preferences-desktop-color"
         source: "configAppearance.qml"
     }
     ConfigCategory {
-        name: i18n("Clock")
+        name: Tr.t("Clock")
         icon: "preferences-system-time"
         source: "configClock.qml"
     }
     ConfigCategory {
-        name: i18n("Notifications")
+        name: Tr.t("Notifications")
         icon: "preferences-desktop-notification-bell"
         source: "configNotifications.qml"
     }
     ConfigCategory {
-        name: i18n("Modules")
+        name: Tr.t("Modules")
         icon: "view-visible"
         source: "configFeatures.qml"
     }
     ConfigCategory {
-        name: i18n("System & FPS")
+        name: Tr.t("System & FPS")
         icon: "utilities-system-monitor"
         source: "configMonitor.qml"
     }
     ConfigCategory {
-        name: i18n("Animation")
+        name: Tr.t("Animation")
         icon: "preferences-desktop-effects"
         source: "configAnimation.qml"
     }

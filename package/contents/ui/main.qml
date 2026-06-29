@@ -7,6 +7,7 @@ import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.plasmoid
 import org.kde.plasma.private.mpris as Mpris
 import org.kde.plasma.workspace.components as WorkspaceComponents
+import "Translator.js" as Tr
 
 PlasmoidItem {
     id: root
@@ -16,8 +17,8 @@ PlasmoidItem {
     // Native hover tooltip showing the full text the compact capsule elides.
     toolTipMainText: {
         if (popupOpen) return ""
-        if (showMedia) return mediaTitle || "Music"
-        if (activeMode === 2) return notificationTitle || "Notification"
+        if (showMedia) return mediaTitle || Tr.t("Music")
+        if (activeMode === 2) return notificationTitle || Tr.t("Notification")
         if (compactTitle.length > 0) return compactTitle
         return timeText
     }
@@ -181,22 +182,22 @@ PlasmoidItem {
             return ""
         }
         if (activeMode === 0) {
-            return mediaTitle || "Music"
+            return mediaTitle || Tr.t("Music")
         }
         if (activeMode === 2) {
-            return notificationTitle || "Notification"
+            return notificationTitle || Tr.t("Notification")
         }
         if (activeMode === 3) {
-            return eventTimer.running ? (keyboardLongName || keyboardShortName || "Keyboard layout") : ""
+            return eventTimer.running ? (keyboardLongName || keyboardShortName || Tr.t("Keyboard layout")) : ""
         }
         if (activeMode === 5) {
-            return jobsCount > 0 ? "Download active" : "Downloads"
+            return jobsCount > 0 ? Tr.t("Download active") : Tr.t("Downloads")
         }
         if (activeMode === 7) {
-            return "Sharing screen"
+            return Tr.t("Sharing screen")
         }
         if (activeMode === 8) {
-            return buildLabel || (buildSuccess ? "Build succeeded" : "Build failed")
+            return buildLabel || (buildSuccess ? Tr.t("Build succeeded") : Tr.t("Build failed"))
         }
         return ""
     }
@@ -297,7 +298,7 @@ PlasmoidItem {
     }
 
     function setNotification(roleModel) {
-        notificationTitle = roleModel.summary || roleModel.applicationName || "Notification"
+        notificationTitle = roleModel.summary || roleModel.applicationName || Tr.t("Notification")
         notificationBody = roleModel.body || roleModel.text || ""
         notificationApp = roleModel.applicationName || ""
         notificationIcon = roleModel.applicationIconName || roleModel.iconName || "notifications"
@@ -397,7 +398,7 @@ PlasmoidItem {
             || hay.indexOf("не удал") !== -1
         buildSuccess = !failed
         buildApp = app || "IntelliJ IDEA"
-        buildLabel = summary || (failed ? "Build failed" : "Build succeeded")
+        buildLabel = summary || (failed ? Tr.t("Build failed") : Tr.t("Build succeeded"))
         buildTimer.restart()
         return true
     }
@@ -515,7 +516,7 @@ PlasmoidItem {
             if (!root.enableNotifications) {
                 return
             }
-            root.notificationTitle = summary || app || "Notification"
+            root.notificationTitle = summary || app || Tr.t("Notification")
             root.notificationBody = body
             root.notificationApp = app
             root.notificationIcon = notification.applicationIconName || notification.iconName || "notifications"
@@ -1035,7 +1036,7 @@ PlasmoidItem {
                 anchors.rightMargin: 14
                 anchors.top: parent.top
                 anchors.topMargin: 16
-                text: root.mediaTitle || "No title"
+                text: root.mediaTitle || Tr.t("No title")
                 color: root.textPrimary
                 font.pointSize: 14
                 font.weight: Font.Medium
@@ -1049,7 +1050,7 @@ PlasmoidItem {
                 anchors.rightMargin: 14
                 anchors.top: musicTitle.bottom
                 anchors.topMargin: 2
-                text: root.mediaArtist || root.mediaIdentity || "Media player"
+                text: root.mediaArtist || root.mediaIdentity || Tr.t("Media player")
                 color: root.textSecondary
                 font.pointSize: 10
                 elide: Text.ElideRight
@@ -1122,7 +1123,7 @@ PlasmoidItem {
 
                 PlasmaComponents.Label {
                     width: parent.width
-                    text: root.notificationTitle || "Notification"
+                    text: root.notificationTitle || Tr.t("Notification")
                     color: root.textPrimary
                     font.pointSize: 13
                     font.weight: Font.Medium
@@ -1131,7 +1132,7 @@ PlasmoidItem {
 
                 PlasmaComponents.Label {
                     width: parent.width
-                    text: root.notificationBody || root.notificationApp || (root.unreadCount > 0 ? root.unreadCount + " unread" : "New notification")
+                    text: root.notificationBody || root.notificationApp || (root.unreadCount > 0 ? Tr.tr("%1 unread", root.unreadCount) : Tr.t("New notification"))
                     color: root.textSecondary
                     font.pointSize: 10
                     wrapMode: Text.WordWrap
@@ -1202,7 +1203,7 @@ PlasmoidItem {
 
                 PlasmaComponents.Label {
                     width: parent.width
-                    text: root.activeMode === 3 ? (root.keyboardLongName || root.keyboardShortName || "Keyboard layout") : root.compactTitle
+                    text: root.activeMode === 3 ? (root.keyboardLongName || root.keyboardShortName || Tr.t("Keyboard layout")) : root.compactTitle
                     color: root.textPrimary
                     font.pointSize: 13
                     font.weight: Font.Medium
@@ -1211,13 +1212,13 @@ PlasmoidItem {
 
                 PlasmaComponents.Label {
                     width: parent.width
-                    text: root.activeMode === 1 ? "Volume" :
-                          root.activeMode === 3 ? "Keyboard layout" :
-                          root.activeMode === 4 ? "Pomodoro session in progress" :
-                          root.activeMode === 5 ? (root.jobsCount > 0 ? root.jobsPercent + "% complete" : "No active downloads") :
-                          root.activeMode === 6 ? "Connected" :
-                          root.activeMode === 7 ? "Active capture or presentation mode" :
-                          root.activeMode === 8 ? (root.buildApp + (root.buildSuccess ? " · success" : " · failed")) : "Status"
+                    text: root.activeMode === 1 ? Tr.t("Volume") :
+                          root.activeMode === 3 ? Tr.t("Keyboard layout") :
+                          root.activeMode === 4 ? Tr.t("Pomodoro session in progress") :
+                          root.activeMode === 5 ? (root.jobsCount > 0 ? Tr.tr("%1% complete", root.jobsPercent) : Tr.t("No active downloads")) :
+                          root.activeMode === 6 ? Tr.t("Connected") :
+                          root.activeMode === 7 ? Tr.t("Active capture or presentation mode") :
+                          root.activeMode === 8 ? (root.buildApp + (root.buildSuccess ? " · " + Tr.t("success") : " · " + Tr.t("failed"))) : Tr.t("Status")
                     color: root.textSecondary
                     font.pointSize: 10
                     elide: Text.ElideRight

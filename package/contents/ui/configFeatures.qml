@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
+import "Translator.js" as Tr
 
 Kirigami.FormLayout {
     property alias cfg_enableMedia: mediaSwitch.checked
@@ -9,9 +10,9 @@ Kirigami.FormLayout {
     property alias cfg_enableScreenSharing: sharingSwitch.checked
     property alias cfg_ideBuildEnabled: ideSwitch.checked
 
-    QQC2.Switch { id: mediaSwitch;     Kirigami.FormData.label: i18n("Media:");          text: i18n("Now playing / MPRIS") }
-    QQC2.Switch { id: keyboardSwitch;  Kirigami.FormData.label: i18n("Keyboard layout:"); text: i18n("Announce layout changes") }
-    QQC2.Switch { id: downloadsSwitch; Kirigami.FormData.label: i18n("Downloads:");      text: i18n("Show active jobs / progress") }
-    QQC2.Switch { id: sharingSwitch;   Kirigami.FormData.label: i18n("Screen sharing:"); text: i18n("Show capture / presentation state") }
-    QQC2.Switch { id: ideSwitch;       Kirigami.FormData.label: i18n("IntelliJ IDEA:");  text: i18n("Show build results (e.g. JAR build succeeded)") }
+    QQC2.Switch { id: mediaSwitch;     Kirigami.FormData.label: Tr.t("Media:");          text: Tr.t("Now playing / MPRIS") }
+    QQC2.Switch { id: keyboardSwitch;  Kirigami.FormData.label: Tr.t("Keyboard layout:"); text: Tr.t("Announce layout changes") }
+    QQC2.Switch { id: downloadsSwitch; Kirigami.FormData.label: Tr.t("Downloads:");      text: Tr.t("Show active jobs / progress") }
+    QQC2.Switch { id: sharingSwitch;   Kirigami.FormData.label: Tr.t("Screen sharing:"); text: Tr.t("Show capture / presentation state") }
+    QQC2.Switch { id: ideSwitch;       Kirigami.FormData.label: Tr.t("IntelliJ IDEA:");  text: Tr.t("Show build results (e.g. JAR build succeeded)") }
 }
